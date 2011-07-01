@@ -6,6 +6,7 @@ private bitly b = new bitly();
 public string getUrl(){return url;}
 public void setUrl(string url){this.url = url;}
 
+/* bind to commandlink or command button to push a longurl to become a shorturl */
 public pagereference shorten(){
 	try{
 	bitly.shorturl s = b.shorten(geturl());

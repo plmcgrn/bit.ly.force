@@ -23,11 +23,13 @@ public class BitlyException extends Exception {}
 		global string long_url {get; set;}
 	}
 
+	/* helper method for sending http requests */
 	private static httpresponse sendRequest(httprequest req){
 		http h = new http();
 		return h.send(req);
 	}
 	
+	/* helper method for building API requests */
 	private static httprequest buildRequest(string endpoint){
 		bitly__c btly = bitly__c.getInstance();
 		string apikey = 'R_5a5ed25ce8fcf45c058c87cbaf661d8d';
@@ -48,11 +50,12 @@ public class BitlyException extends Exception {}
 		return req;		
 	}
 
+	/* helper method for URL Encoding strings */
 	private static string encode(string toencode){
-		//toencode = toencode.replace('?','/?');
 		return encodingutil.urlEncode(toEncode, 'UTF-8');
 	}
 	
+	/* main method for getting a shortend URL from the bit.ly API */
 	global shorturl shorten(string longurl){
 		longurl = encode(longurl);	
 		
@@ -66,6 +69,7 @@ public class BitlyException extends Exception {}
 		return parseShortUrlResponse(res.getBodyDocument());
 	}
 
+	/* helper method to convert the API response into a runtime shorturl object */
 	public static shorturl parseShortUrlResponse(dom.document doc){
 		Dom.XMLNode root = doc.getRootElement();
 		
