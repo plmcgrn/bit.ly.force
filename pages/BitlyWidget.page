@@ -1,0 +1,21 @@
+<apex:page controller="BitlyWidgetCon" showHeader="false">
+<apex:includescript value="{!$Resource.bitly_jquerymin}" />
+<html>
+<body style="background-color:transparent">
+<script type="text/javascript">
+var pasted = false;
+jQuery(document).bind('paste', function(e){ pasted=true; })
+</script>
+<apex:form >
+	<apex:actionfunction name="shorten" action="{!shorten}" rerender="urlOP,messages" focus="idtext" onComplete="pasted=false;"/>
+	<apex:outputpanel id="urlOP">	
+		<apex:inputtext id="urltext" value="{!url}" onKeyUp="if(pasted==true){shorten();}" style="width: 135px;"/>
+	</apex:outputpanel>
+	<apex:commandbutton action="{!shorten}" value="Shrink" style="margin-left: 5px;" status="status" reRender="urlOP,messages" />
+</apex:form>
+
+<apex:actionstatus id="status" starttext="" stoptext="" />
+</body>
+</html>
+<apex:messages id="messages" />
+</apex:page>
