@@ -1,0 +1,1 @@
+The bit.ly.force package for force.com is a native bit.ly integration, written in Apex and Visualforce, for embedding a URL shortener in the Salesforce UI.
